@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit, :destroy]
+   before_action :authenticate_user!
 
   def show
     @user = User.find(params[:id])
@@ -10,6 +11,7 @@ class UsersController < ApplicationController
   def index
     @users = User.all
     @book = Book.new
+  
   end
 
   def edit
@@ -30,12 +32,25 @@ class UsersController < ApplicationController
       render "edit"
     end
   end
+  
+  def followings
+    @user = User.find(params[:id])
+    @followings = @user.following_users
+  end
+
+  def followers
+    @user = User.find(params[:id])
+    @followers = @user.follower_users
+  end
 
   private
   def user_params
     params.require(:user).permit(:name,:profile_image,:introduction)
   end
   
+   def set_user
+    @user = User.find(params[:id])
+   end
 
   def ensure_correct_user
     @user = User.find(params[:id])
