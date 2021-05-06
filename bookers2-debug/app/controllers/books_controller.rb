@@ -5,12 +5,10 @@ class BooksController < ApplicationController
   def show
       @book = Book.find(params[:id])
       @book_comment =BookComment.new
-      @books = Book.new
-      @user = current_user
+      @comments = @book.book_comments.order(created_at: :desc)
   end
 
   def index
-      @user = current_user
       @books = Book.all
       @book = Book.new
   end
@@ -58,7 +56,4 @@ class BooksController < ApplicationController
   def book_params
        params.require(:book).permit(:title,:body)
   end
-  
-  
-
 end
