@@ -5,6 +5,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :books, dependent: :destroy
+  has_many :user_rooms
+  has_many :chats
+  has_many :rooms, through: :user_rooms
 
   validates :name, length: {maximum: 20, minimum: 2}, uniqueness: true, presence: true
   validates :introduction,length: { maximum: 50}

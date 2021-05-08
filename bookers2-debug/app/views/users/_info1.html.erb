@@ -9,6 +9,13 @@
 	  <th><%= user.introduction %></th>
   </tr>
   <tr>
+  
+  <% if current_user != @user %>
+  <th><%= link_to 'チャットを開始する', chat_path(@user.id) %></th>
+  <% end %> 
+  
+  </tr>
+  <tr>
     <th>follows</th>
     <th><%= link_to user.follower.count, followings_user_path %></th>
   </tr>
