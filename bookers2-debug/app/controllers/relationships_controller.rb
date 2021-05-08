@@ -9,4 +9,11 @@ class RelationshipsController < ApplicationController
       current_user.unfollow(params[:id])
       redirect_back(fallback_location: root_path)
     end
+    
+     def create
+
+    super
+   WelcomeMailer.with(user: @user).welcome_email.deliver_later
+     end
+
 end
