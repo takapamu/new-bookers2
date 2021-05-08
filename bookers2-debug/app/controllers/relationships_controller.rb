@@ -10,10 +10,4 @@ class RelationshipsController < ApplicationController
       redirect_back(fallback_location: root_path)
     end
     
-     def create
-
-    super
-   WelcomeMailer.with(user: @user).welcome_email.deliver_later
-     end
-
 end
