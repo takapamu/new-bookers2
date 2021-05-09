@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :ensure_correct_user, only: [:update, :edit, :destroy]
    before_action :authenticate_user!
+   
 
   def show
       @user = User.find(params[:id])
@@ -22,6 +23,7 @@ class UsersController < ApplicationController
       redirect_to user_path(current_user)
   end
   
+  
   end
 
   def update
@@ -32,6 +34,8 @@ class UsersController < ApplicationController
        render "edit"
     end
   end
+  
+
   
   def followings
       @user = User.find(params[:id])
