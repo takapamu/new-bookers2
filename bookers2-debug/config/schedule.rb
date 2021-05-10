@@ -19,11 +19,11 @@ set :environment, :development
 # end
 #
 
-every 1.minutes do ##ここを追加
+every 3.minutes do ##ここを追加
 # every 1.days, at: '9:00 am' do　##ここをコメントアウト
 
 # Rails内のメソッド実行
-  runner "UserMailer.notify_user"
+  runner "DailyMailer.daily_mail"
 end
 
 # Learn more: http://github.com/javan/whenever
